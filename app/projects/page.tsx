@@ -1,4 +1,4 @@
-import { ProjectCard } from "@/components/Cards";
+import { ProjectCard } from "@/components/ProjectCard";
 import { Topbar } from "@/components/Topbar";
 
 export default function Projects(){
