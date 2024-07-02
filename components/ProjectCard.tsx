@@ -9,7 +9,24 @@ import {
   Image
 } from "@nextui-org/react";
 
-export function ProjectCard() {
+type StackName = "ts" | "js" | "react" | "python" | "django";
+
+export interface ProjectCardProps{
+  title: string,
+  description: string,
+  url?: string,
+  stackUsed: StackName[], 
+}
+
+const stackImages = {
+  "ts": {"src": "/ts-logo.png", "width": 40},
+  "js": {"src": "/js-logo.png", "width": 40},
+  "react": {"src": "/react-logo.png", "width": 40},
+  "python": {"src": "/python-logo.png", "width": 40},
+  "django": {"src": "/django-logo.png", "width": 80},
+}
+
+export function ProjectCard({title, description, url, stackUsed}: ProjectCardProps) {
   // State to store the gradient position and rotation
   const [gradient, setGradient] = useState({ x: 50, y: 50 });
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
@@ -50,7 +67,7 @@ export function ProjectCard() {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="max-w-[400px] h-80 m-10 mt-20 border border-midnight hover:border-zinc-500"
+      className="max-w-[400px] h-80 border border-midnight hover:border-zinc-500"
       style={{
         background: `radial-gradient(circle at ${gradient.x}% ${gradient.y}%, rgba(6, 6, 46, 0.5), rgba(0, 0, 0, 0.8))`,
         transition: "transform 0.1s ease, background 0.3s ease",
@@ -59,29 +76,33 @@ export function ProjectCard() {
       }}
     >
       <CardHeader className="flex gap-3">
-        <Image
+        {/* <Image
           alt="nextui logo"
           height={40}
           radius="sm"
           src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
           width={40}
-        />
+        /> */}
         <div className="flex flex-col">
-          <p className="text-md text-white">NextUI</p>
-          <p className="text-small text-default-500">nextui.org</p>
+          <p className="text-md text-white">{title}</p>
+          <p className="text-small text-default-500">{url ? url: ""}</p>
         </div>
       </CardHeader>
       <Divider />
       <CardBody>
-        <p className="text-white">Make beautiful websites regardless of your design experience.</p>
+        <p className="text-white">{description}</p>
       </CardBody>
       <Divider />
       <CardFooter>
-        <Image src="/ts-logo.png" width={40} radius="none" />
-        <Image src="/js-logo.png" width={40} radius="none" className="ml-2" />
-        <Image src="/react-logo.png" width={40} radius="none" className="ml-2" />
-        <Image src="/python-logo.png" width={40} radius="none" className="ml-2" />
-        <Image src="/django-logo.png" width={80} radius="none" className="ml-2" />
+        {stackUsed?.map((stack,index) => (
+          <Image
+            key={index}
+            src={stackImages[stack]?.src || ""}
+            width={stackImages[stack]?.width || 40}
+            radius="none"
+            className="ml-2"
+          />
+        ))}
       </CardFooter>
     </Card>
   );

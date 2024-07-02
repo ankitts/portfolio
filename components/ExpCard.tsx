@@ -9,7 +9,26 @@ import {
   Image
 } from "@nextui-org/react";
 
-export function ExpCard({className}: {className:any}) {
+type StackName = "ts" | "js" | "react" | "python" | "django";
+
+export interface ExpCardProps{
+  role: string,
+  organization?: string,
+  description: string,
+  logoSrc?: string,
+  stackUsed: StackName[], 
+  duration: string
+}
+
+const stackImages = {
+  "ts": {"src": "/ts-logo.png", "width": 40},
+  "js": {"src": "/js-logo.png", "width": 40},
+  "react": {"src": "/react-logo.png", "width": 40},
+  "python": {"src": "/python-logo.png", "width": 40},
+  "django": {"src": "/django-logo.png", "width": 80},
+}
+
+export function ExpCard({role, organization, description, logoSrc, stackUsed, duration}: ExpCardProps) {
   // State to store the gradient position and rotation
   const [gradient, setGradient] = useState({ x: 50, y: 50 });
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
@@ -50,7 +69,7 @@ export function ExpCard({className}: {className:any}) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`max-w-[400px] h-80 border border-midnight hover:border-zinc-500 ${className}`}
+      className={`max-w-[400px] h-80 border border-midnight hover:border-zinc-500`}
       style={{
         background: `radial-gradient(circle at ${gradient.x}% ${gradient.y}%, rgba(6, 6, 46, 0.5), rgba(0, 0, 0, 0.8))`,
         transition: "transform 0.1s ease, background 0.3s ease",
@@ -61,27 +80,35 @@ export function ExpCard({className}: {className:any}) {
       <CardHeader className="flex gap-3">
         <Image
           alt="nextui logo"
-          height={40}
+          height={70}
           radius="sm"
-          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-          width={40}
+          src={logoSrc}
+          width={70}
         />
-        <div className="flex flex-col">
-          <p className="text-md text-white">NextUI</p>
-          <p className="text-small text-default-500">nextui.org</p>
+        <div className="flex flex-col w-full">
+          <p className="text-md text-white font-semibold">{role}</p>
+          <p className="text-md text-default-500">{organization}</p>
+          <div className="flex justify-between">
+            
+            <p className="text-small text-default-500">{duration}</p>
+          </div>
         </div>
       </CardHeader>
       <Divider />
       <CardBody>
-        <p className="text-white">Make beautiful websites regardless of your design experience.</p>
+        <p className="text-white">{description}</p>
       </CardBody>
       <Divider />
       <CardFooter>
-        <Image src="/ts-logo.png" width={40} radius="none" />
-        <Image src="/js-logo.png" width={40} radius="none" className="ml-2" />
-        <Image src="/react-logo.png" width={40} radius="none" className="ml-2" />
-        <Image src="/python-logo.png" width={40} radius="none" className="ml-2" />
-        <Image src="/django-logo.png" width={80} radius="none" className="ml-2" />
+        {stackUsed?.map((stack,index) => (
+          <Image
+            key={index}
+            src={stackImages[stack]?.src || ""}
+            width={stackImages[stack]?.width || 40}
+            radius="none"
+            className="ml-2"
+          />
+        ))}
       </CardFooter>
     </Card>
   );
