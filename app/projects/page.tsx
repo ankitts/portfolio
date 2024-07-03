@@ -35,10 +35,10 @@ export default function Projects() {
         Projects
       </div>
       <div className="grid grid-cols-2 mx-52">
-        {Projects.map((project, key) => (
+        {Projects.map((project, index) => (
           <div className="mt-20 mx-20">
             <ProjectCard
-              key={key}
+              key={project.title}
               title={project.title}
               description={project.description}
               url={project.url}

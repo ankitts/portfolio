@@ -63,8 +63,8 @@ export default function Home() {
         </div>
       </div>
       <div className="ml-72 mr-60 pb-20 grid grid-cols-4 gap-1 justify-center">
-        {skills.map((skill, key)=>(
-            <SkillsCard key={key} name={skill.name} src={skill.src} />
+        {skills.map((skill)=>(
+            <SkillsCard key={skill.name} name={skill.name} src={skill.src} />
         ))}
       </div>
     </div>
