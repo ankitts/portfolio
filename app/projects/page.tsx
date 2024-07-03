@@ -40,7 +40,7 @@ export default function Projects() {
       </div>
       <div className="grid grid-cols-2 mx-52">
         {Projects.map((project) => (
-          <div className="mt-20 mx-20">
+          <div key={project.id} className="mt-20 mx-20">
             <ProjectCard
               key={project.id}
               title={project.title}
