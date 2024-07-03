@@ -8,8 +8,9 @@ import {
   Divider,
   Image
 } from "@nextui-org/react";
+import Link from "next/link";
 
-type StackName = "ts" | "js" | "react" | "python" | "django";
+type StackName = "ts" | "js" | "react" | "python" | "django" | "next" | "express" | "docker" | "mongo" | "postgres";
 
 export interface ProjectCardProps{
   title: string,
@@ -23,7 +24,12 @@ const stackImages = {
   "js": {"src": "/js-logo.png", "width": 40},
   "react": {"src": "/react-logo.png", "width": 40},
   "python": {"src": "/python-logo.png", "width": 40},
-  "django": {"src": "/django-logo.png", "width": 80},
+  "django": {"src": "/django-logo.png", "width": 40},
+  "next": {"src": "/nextjs-logo.png", "width": 40},
+  "express": {"src": "/express-logo.png", "width": 40},
+  "docker": {"src": "/docker-logo.png", "width": 40},
+  "mongo": {"src": "/mongo-logo.png", "width": 40},
+  "postgres": {"src": "/postgres-logo.png", "width": 40},
 }
 
 export function ProjectCard({title, description, url, stackUsed}: ProjectCardProps) {
@@ -76,16 +82,9 @@ export function ProjectCard({title, description, url, stackUsed}: ProjectCardPro
       }}
     >
       <CardHeader className="flex gap-3">
-        {/* <Image
-          alt="nextui logo"
-          height={40}
-          radius="sm"
-          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-          width={40}
-        /> */}
         <div className="flex flex-col">
           <p className="text-md text-white">{title}</p>
-          <p className="text-small text-default-500">{url ? url: ""}</p>
+          <Link href={url || "#"} className="text-small text-default-500 underline hover:text-blue-500">{url ? "Watch live": ""}</Link>
         </div>
       </CardHeader>
       <Divider />
@@ -100,7 +99,7 @@ export function ProjectCard({title, description, url, stackUsed}: ProjectCardPro
             src={stackImages[stack]?.src || ""}
             width={stackImages[stack]?.width || 40}
             radius="none"
-            className="ml-2"
+            className="px-1"
           />
         ))}
       </CardFooter>

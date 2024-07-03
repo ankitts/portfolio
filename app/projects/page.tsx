@@ -7,26 +7,24 @@ export default function Projects() {
     {
       title: "Medium Clone",
       description: "Blogging Website built using NextJS.",
-      url: "https://ankit-portfolio-one-gamma.vercel.app",
-      stackUsed: ["ts", "react"],
+      url: "https://medium-next-two.vercel.app/",
+      stackUsed: ["ts", "next", "postgres"],
     },
     {
       title: "Payments App",
       description: "Payment App made to transfer P2P money using transactions using the MERN stack",
-      url: "https://ankit-portfolio-one-gamma.vercel.app",
-      stackUsed: ["js", "react"],
+      stackUsed: ["js", "react", "express", "mongo"],
     },
     {
       title: "Computer Vision Based Web App",
       description: "Web app to detect objects from live webcam stream using the YOLOv5 model for detection.",
-      url: "https://ankit-portfolio-one-gamma.vercel.app",
       stackUsed: ["python", "django"],
     },
     {
-      title: "Portfolio",
+      title: "Portfolio Website",
       description: "Portfolio website built using NextJS.",
-      url: "https://ankit-portfolio-one-gamma.vercel.app",
-      stackUsed: ["ts", "react"],
+      url: "https://ankit-portfolio-one-gamma.vercel.app/",
+      stackUsed: ["ts", "next"],
     },
   ];
 
@@ -37,10 +35,10 @@ export default function Projects() {
         Projects
       </div>
       <div className="grid grid-cols-2 mx-52">
-        {Projects.map((project, index) => (
+        {Projects.map((project, key) => (
           <div className="mt-20 mx-20">
             <ProjectCard
-              key={index}
+              key={key}
               title={project.title}
               description={project.description}
               url={project.url}

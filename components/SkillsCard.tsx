@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState, useRef } from "react";
 import {
   Card,
@@ -6,35 +6,16 @@ import {
   CardBody,
   CardFooter,
   Divider,
-  Image
+  Link,
+  Image,
 } from "@nextui-org/react";
 
-type StackName = "ts" | "js" | "react" | "python" | "django" | "next" | "express" | "docker" | "mongo" | "postgres";
-
-export interface ExpCardProps{
-  role: string,
-  organization?: string,
-  description: string,
-  logoSrc?: string,
-  stackUsed: StackName[], 
-  duration: string
+interface SkillCardProps {
+  name: string;
+  src: string;
 }
 
-const stackImages = {
-  "ts": {"src": "/ts-logo.png", "width": 40},
-  "js": {"src": "/js-logo.png", "width": 40},
-  "react": {"src": "/react-logo.png", "width": 40},
-  "python": {"src": "/python-logo.png", "width": 40},
-  "django": {"src": "/django-logo.png", "width": 40},
-  "next": {"src": "/nextjs-logo.png", "width": 40},
-  "express": {"src": "/express-logo.png", "width": 40},
-  "docker": {"src": "/docker-logo.png", "width": 40},
-  "mongo": {"src": "/mongo-logo.png", "width": 40},
-  "postgres": {"src": "/postgres-logo.png", "width": 40},
-}
-
-export function ExpCard({role, organization, description, logoSrc, stackUsed, duration}: ExpCardProps) {
-  // State to store the gradient position and rotation
+export default function SkillsCard({ name, src }: SkillCardProps) {
   const [gradient, setGradient] = useState({ x: 50, y: 50 });
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
@@ -68,13 +49,12 @@ export function ExpCard({role, organization, description, logoSrc, stackUsed, du
     setGradient({ x: 50, y: 50 }); // Reset gradient to center
     setTransform({ rotateX: 0, rotateY: 0 }); // Reset rotation to default
   };
-
   return (
     <Card
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`max-w-[400px] h-80 border border-midnight hover:border-zinc-500`}
+      className="max-w-[400px] border border-midnight"
       style={{
         background: `radial-gradient(circle at ${gradient.x}% ${gradient.y}%, rgba(6, 6, 46, 0.5), rgba(0, 0, 0, 0.8))`,
         transition: "transform 0.1s ease, background 0.3s ease",
@@ -85,36 +65,15 @@ export function ExpCard({role, organization, description, logoSrc, stackUsed, du
       <CardHeader className="flex gap-3">
         <Image
           alt="nextui logo"
-          height={70}
-          radius="sm"
-          src={logoSrc}
-          width={70}
+          height={40}
+          radius="none"
+          src={src}
+          width={40}
         />
-        <div className="flex flex-col w-full">
-          <p className="text-md text-white font-semibold">{role}</p>
-          <p className="text-md text-default-500">{organization}</p>
-          <div className="flex justify-between">
-            
-            <p className="text-small text-default-500">{duration}</p>
-          </div>
+        <div className="flex flex-col">
+          <p className="text-lg">{name}</p>
         </div>
       </CardHeader>
-      <Divider />
-      <CardBody>
-        <p className="text-white">{description}</p>
-      </CardBody>
-      <Divider />
-      <CardFooter>
-        {stackUsed?.map((stack,index) => (
-          <Image
-            key={index}
-            src={stackImages[stack]?.src || ""}
-            width={stackImages[stack]?.width || 40}
-            radius="none"
-            className="px-1"
-          />
-        ))}
-      </CardFooter>
     </Card>
   );
 }

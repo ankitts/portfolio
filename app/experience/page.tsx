@@ -19,7 +19,7 @@ export default function Experience() {
               description={
                 "Contributed with 3 Pull Requests to an UI Library named NextUI."
               }
-              stackUsed={["ts", "react"]}
+              stackUsed={["ts", "react", "next", "docker"]}
               duration="May'24-Present"
             />
           </div>
@@ -31,7 +31,7 @@ export default function Experience() {
               description={
                 "Built an Inventory System for tracking supplies to impact region during natural disaster. Developed an API backend system on Django performing CRUD operations on stock data"
               }
-              stackUsed={["python", "django"]}
+              stackUsed={["python", "django", "docker", "postgres"]}
               duration="Jul'22-Sep'22"
             />
           </div>
@@ -106,7 +106,7 @@ export default function Experience() {
               logoSrc="/knoct-id-logo.jpeg"
               organization="Knoct ID"
               description="Developed backend to implement the ABHA API milestones for user auth in the healthcare application. Utilised Nest.js & MongoDB to develop the backend, integrating terminologies for doctor prescriptions"
-              stackUsed={["ts", "react"]}
+              stackUsed={["ts", "react", "mongo"]}
               duration="Jan'24-Mar'24"
             />
           </div>
