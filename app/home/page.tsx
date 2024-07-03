@@ -5,40 +5,19 @@ import { Image } from "@nextui-org/image";
 
 export default function Home() {
 
-  const skills = [{
-    name: "JavaScript",
-    src: "/js-logo.png"
-  },{
-    name: "TypeScript",
-    src: "/ts-logo.png"
-  },{
-    name: "Python",
-    src: "/python-logo.png"
-  },{
-    name: "React",
-    src: "/react-logo.png"
-  },{
-    name: "Next",
-    src: "/nextjs-logo.png"
-  },{
-    name: "Express",
-    src: "/express-logo.png"
-  },{
-    name: "Django",
-    src: "/django-logo.png"
-  },{
-    name: "Docker",
-    src: "/docker-logo.png"
-  },{
-    name: "Git",
-    src: "/git-logo.png"
-  },{
-    name: "Mongo",
-    src: "/mongo-logo.png"
-  },{
-    name: "Postgres",
-    src: "/postgres-logo.png"
-  }]
+  const skills = [
+    { id: 1, name: "JavaScript", src: "/js-logo.png" },
+    { id: 2, name: "TypeScript", src: "/ts-logo.png" },
+    { id: 3, name: "Python", src: "/python-logo.png" },
+    { id: 4, name: "React", src: "/react-logo.png" },
+    { id: 5, name: "Next", src: "/nextjs-logo.png" },
+    { id: 6, name: "Express", src: "/express-logo.png" },
+    { id: 7, name: "Django", src: "/django-logo.png" },
+    { id: 8, name: "Docker", src: "/docker-logo.png" },
+    { id: 9, name: "Git", src: "/git-logo.png" },
+    { id: 10, name: "Mongo", src: "/mongo-logo.png" },
+    { id: 11, name: "Postgres", src: "/postgres-logo.png" }
+  ]
 
   return (
     <div className="bg-black h-screen text-white">
@@ -64,7 +43,7 @@ export default function Home() {
       </div>
       <div className="ml-72 mr-60 pb-20 grid grid-cols-4 gap-1 justify-center">
         {skills.map((skill)=>(
-            <SkillsCard key={skill.name} name={skill.name} src={skill.src} />
+            <SkillsCard key={skill.id} name={skill.name} src={skill.src} />
         ))}
       </div>
     </div>

@@ -5,22 +5,26 @@ export default function Projects() {
 
   const Projects: ProjectCardProps[] = [
     {
+      id: 1,
       title: "Medium Clone",
       description: "Blogging Website built using NextJS.",
       url: "https://medium-next-two.vercel.app/",
       stackUsed: ["ts", "next", "postgres"],
     },
     {
+      id: 2,
       title: "Payments App",
       description: "Payment App made to transfer P2P money using transactions using the MERN stack",
       stackUsed: ["js", "react", "express", "mongo"],
     },
     {
+      id: 3,
       title: "Computer Vision Based Web App",
       description: "Web app to detect objects from live webcam stream using the YOLOv5 model for detection.",
       stackUsed: ["python", "django"],
     },
     {
+      id: 4,
       title: "Portfolio Website",
       description: "Portfolio website built using NextJS.",
       url: "https://ankit-portfolio-one-gamma.vercel.app/",
@@ -35,10 +39,10 @@ export default function Projects() {
         Projects
       </div>
       <div className="grid grid-cols-2 mx-52">
-        {Projects.map((project, index) => (
+        {Projects.map((project) => (
           <div className="mt-20 mx-20">
             <ProjectCard
-              key={project.title}
+              key={project.id}
               title={project.title}
               description={project.description}
               url={project.url}

@@ -13,6 +13,7 @@ import Link from "next/link";
 type StackName = "ts" | "js" | "react" | "python" | "django" | "next" | "express" | "docker" | "mongo" | "postgres";
 
 export interface ProjectCardProps{
+  id?: number,
   title: string,
   description: string,
   url?: string,
